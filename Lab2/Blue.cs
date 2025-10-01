@@ -161,10 +161,27 @@ namespace Lab2
             double SY = 0;
 
             // code here
-
+            double e = 0.0001;
+            while (a <= b + e)
+            {
+                double a_pow = 1;
+                long fuc = 1;
+                int i = 0;
+                do
+                {
+                    if (i != 0)
+                    {
+                        fuc *= i;
+                    }
+                    SS += ((i * 2 + 1) * a_pow / fuc);
+                    a_pow *= (a * a);
+                    i++;
+                } while (Math.Abs((i * 2 + 1) * a_pow / fuc >= e));
+            }
             // end
 
             return (SS, SY);
         }
     }
+
 }
