@@ -119,38 +119,33 @@ namespace Lab2
             int c = 0;
 
             // code here
-            int f = 0, fc = 0, ii = 7;
-            for (int i = 0; i < 7; i++)
+            double dist = 0;
+            int i = 1, f_b = 0, f_c = 0;
+            if (S > 42)
             {
-                if ((S > 42) && (fc == 0))
+                c = 0;
+                f_c = 1;
+            }
+            do
+            {
+                dist += S;
+                if (i == 7)
                 {
-                    c = i;
-                    fc = 1;
+                    a = dist;
                 }
-                a += S;
-                S = (S / 100 * (100 + I));
-                if ((a > 100) && (f == 0))
+                if ((dist >= 100) && (f_b == 0)) 
                 {
                     b = i;
-                    f = 1;
+                    f_b = 1;
                 }
-            }
-            double img_a = a;
-            while (img_a < 100)
-            {
-                ii++;
-                if ((S > 42) && (fc == 0))
+                S = ((S / 100) * (100 + I));
+                if ((S > 42) && (f_c == 0))
                 {
-                    c = ii;
-                    fc = 1;
+                    c = i;
+                    f_c = 1;
                 }
-                img_a += S;
-                S = (S / 100 * (100 + I));
-            }
-            while (S < 42)
-            {
-
-            }
+                i++;
+            } while (a * b * f_c == 0);
             // end
 
             return (a, b, c);
@@ -176,12 +171,13 @@ namespace Lab2
                     SS += ((i * 2 + 1) * a_pow / fuc);
                     a_pow *= (a * a);
                     i++;
-                } while (Math.Abs((i * 2 + 1) * a_pow / fuc >= e));
+                } while (Math.Abs((i * 2 + 1) * a_pow / fuc) >= e);
+                SY += ((1 + 2 * a * a) * Math.Pow(Math.E, a * a));
+                a += h;
             }
             // end
 
             return (SS, SY);
         }
     }
-
 }
